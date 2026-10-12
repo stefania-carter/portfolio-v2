@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+  <rect width="40" height="40" rx="10" ry="10" fill="#FFCE2C" />
+  <text
+    x="20"
+    y="20"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+    font-size="13"
+    font-weight="700"
+    letter-spacing="-0.5"
+    fill="#030885"
+  >
+    SCD
+  </text>
+</svg>
