@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { useAppear } from "../hooks/useAppear";
 import portfolio, { getBySlug } from "../data/portfolio";
@@ -132,6 +132,11 @@ function PortfolioItem({ slug }) {
   const [active, setActive] = useState(null);
   useAppear();
 
+  // Refs para swipe en mobile
+  const touchStartXRef = useRef(0);
+  const touchEndXRef = useRef(0);
+  const wasSwipeRef = useRef(false);
+
   const { blocks, images } = buildContent(item);
   const total = images.length;
 
@@ -144,6 +149,36 @@ function PortfolioItem({ slug }) {
     () => setActive((i) => (i === null ? i : (i + 1) % total)),
     [total],
   );
+
+  // Swipe handlers para mobile
+  const handleTouchStart = (e) => {
+    touchStartXRef.current = e.changedTouches[0].screenX;
+    wasSwipeRef.current = false;
+  };
+
+  const handleTouchEnd = (e) => {
+    touchEndXRef.current = e.changedTouches[0].screenX;
+    const deltaX = touchEndXRef.current - touchStartXRef.current;
+    const SWIPE_THRESHOLD = 50;
+
+    if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
+      wasSwipeRef.current = true;
+      if (deltaX > 0) {
+        prev();
+      } else {
+        next();
+      }
+    }
+  };
+
+  const handleLightboxClick = () => {
+    // Si fue swipe, no cerrar el lightbox
+    if (wasSwipeRef.current) {
+      wasSwipeRef.current = false;
+      return;
+    }
+    close();
+  };
 
   useEffect(() => {
     if (active === null) return;
@@ -341,9 +376,14 @@ function PortfolioItem({ slug }) {
         <span className="pd-next-arrow">→</span>
       </Link>
 
-      {/* Lightbox */}
+      {/* Lightbox con swipe para mobile */}
       {active !== null && (
-        <div className="lightbox" onClick={close}>
+        <div
+          className="lightbox"
+          onClick={handleLightboxClick}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           <button className="lightbox-close" onClick={close}>
             Cerrar
           </button>

@@ -3,9 +3,16 @@ import { Link } from "react-router-dom";
 
 export default function Dock() {
   const [hovered, setHovered] = useState(null);
+  const [tappedId, setTappedId] = useState(null);
   const [visible, setVisible] = useState(true);
+  const [isTouch, setIsTouch] = useState(false);
 
-  // 👇 Ocultar el dock cuando el footer entra en el viewport
+  // Detectar si es touch
+  useEffect(() => {
+    setIsTouch(window.matchMedia("(hover: none)").matches);
+  }, []);
+
+  // Ocultar el dock cuando el footer entra en el viewport
   useEffect(() => {
     const footer = document.querySelector(".footer");
     if (!footer) return;
@@ -24,6 +31,19 @@ export default function Dock() {
 
     return () => observer.disconnect();
   }, []);
+
+  // Resetear el estado tapped al hacer scroll
+  useEffect(() => {
+    const onScroll = () => setTappedId(null);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Handler de tap para mobile
+  const handleTouchStart = (id) => {
+    setTappedId(id);
+    setTimeout(() => setTappedId(null), 200);
+  };
 
   const items = [
     {
@@ -75,16 +95,20 @@ export default function Dock() {
   return (
     <div
       className={`dock-wrapper ${visible ? "" : "dock-hidden"}`}
-      onMouseLeave={() => setHovered(null)}
+      {...(isTouch ? {} : { onMouseLeave: () => setHovered(null) })}
     >
       {items.map((item) => {
-        const isHovered = hovered === item.id;
-        const isNeighborLeft = hovered === items[items.indexOf(item) - 1]?.id;
-        const isNeighborRight = hovered === items[items.indexOf(item) + 1]?.id;
+        const isHovered = !isTouch && hovered === item.id;
+        const isNeighborLeft =
+          !isTouch && hovered === items[items.indexOf(item) - 1]?.id;
+        const isNeighborRight =
+          !isTouch && hovered === items[items.indexOf(item) + 1]?.id;
+        const isTapped = tappedId === item.id;
 
         let scale = 1;
         if (isHovered) scale = 1.4;
         else if (isNeighborLeft || isNeighborRight) scale = 1.15;
+        else if (isTapped) scale = 0.95;
 
         const content = (
           <>
@@ -98,15 +122,20 @@ export default function Dock() {
           </>
         );
 
+        const commonProps = {
+          className: `dock-item ${isTapped ? "is-tapped" : ""}`,
+          onTouchStart: () => handleTouchStart(item.id),
+          "aria-label": item.label,
+          ...(isTouch
+            ? {}
+            : {
+                onMouseEnter: () => setHovered(item.id),
+              }),
+        };
+
         if (item.isInternal) {
           return (
-            <Link
-              key={item.id}
-              to={item.href}
-              className="dock-item"
-              onMouseEnter={() => setHovered(item.id)}
-              aria-label={item.label}
-            >
+            <Link key={item.id} to={item.href} {...commonProps}>
               {content}
             </Link>
           );
@@ -116,12 +145,10 @@ export default function Dock() {
           <a
             key={item.id}
             href={item.href}
-            className="dock-item"
             target={item.download ? undefined : "_blank"}
             rel={item.download ? undefined : "noopener noreferrer"}
             download={item.download ? true : undefined}
-            onMouseEnter={() => setHovered(item.id)}
-            aria-label={item.label}
+            {...commonProps}
           >
             {content}
           </a>

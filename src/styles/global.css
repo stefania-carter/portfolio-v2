@@ -4671,12 +4671,11 @@ html.dark .award-link:hover {
 }
 
 /* Feedback táctil para mobile */
-.dock-item:active .dock-icon {
+.dock-item.is-tapped .dock-icon {
   background: var(--overlay-medium);
-  transform: scale(0.95);
 }
 
-.dock-item:active .dock-icon svg {
+.dock-item.is-tapped .dock-icon svg {
   width: 26px;
   height: 26px;
 }
