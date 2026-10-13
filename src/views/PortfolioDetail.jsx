@@ -29,7 +29,6 @@ function VideoEmbed({ url, title }) {
     const tryLoad = (url, onSuccess, onFail) => {
       const img = new Image();
       img.onload = () => {
-        // Si la imagen es la de error (120x90), considerar como fallo
         if (img.naturalWidth <= 120) {
           onFail();
         } else {
@@ -57,7 +56,6 @@ function VideoEmbed({ url, title }) {
             src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`}
             title={title || "Video de YouTube"}
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-            allowFullScreen
           />
         ) : (
           <button
@@ -91,6 +89,7 @@ function VideoEmbed({ url, title }) {
     </figure>
   );
 }
+
 // Arma la lista de bloques y numera las imágenes para el lightbox.
 function buildContent(item) {
   if (!item) return { blocks: [], images: [] };
@@ -248,7 +247,7 @@ function PortfolioItem({ slug }) {
         ← Proyectos
       </Link>
 
-      {/* 1. Título a la izquierda, descripción breve a la derecha */}
+      {/* 1. Título + descripción breve */}
       <header className="pd-header" data-appear>
         <div className="pd-header-main">
           <p className="pd-meta">{item.category}</p>
@@ -296,7 +295,7 @@ function PortfolioItem({ slug }) {
         </div>
       )}
 
-      {/* 4. Descripción larga a la izquierda, ficha técnica a la derecha */}
+      {/* 4. Intro larga a la izquierda, ficha técnica simplificada a la derecha */}
       {hasDetails && (
         <section className="pd-details" data-appear>
           <div className="pd-intro">
@@ -305,38 +304,12 @@ function PortfolioItem({ slug }) {
             ))}
           </div>
 
-          {info && (
+          {info && (info.client || info.team) && (
             <div className="pd-sheet">
               {info.client && (
                 <div className="pd-sheet-item">
                   <span className="pd-sheet-label">Cliente</span>
                   <p>{info.client}</p>
-                </div>
-              )}
-              {info.role && (
-                <div className="pd-sheet-item">
-                  <span className="pd-sheet-label">Mi rol</span>
-                  <p>{info.role}</p>
-                </div>
-              )}
-              {info.skills && info.skills.length > 0 && (
-                <div className="pd-sheet-item">
-                  <span className="pd-sheet-label">Skills</span>
-                  <ul>
-                    {info.skills.map((s) => (
-                      <li key={s}>{s}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {info.tools && info.tools.length > 0 && (
-                <div className="pd-sheet-item">
-                  <span className="pd-sheet-label">Herramientas</span>
-                  <ul>
-                    {info.tools.map((t) => (
-                      <li key={t}>{t}</li>
-                    ))}
-                  </ul>
                 </div>
               )}
               {info.team && info.team.length > 0 && (
@@ -354,11 +327,12 @@ function PortfolioItem({ slug }) {
         </section>
       )}
 
-      {/* 5. Resto del contenido */}
+      {/* 5. Bloques de contenido (imágenes, grids, videos, textos) */}
       <div className="pd-blocks">
         {blocks.map((block, i) => renderBlock(block, i))}
       </div>
 
+      {/* 6. Siguiente proyecto */}
       <Link to={`/portfolio/${nextItem.slug}`} className="pd-next" data-appear>
         <div className="pd-next-text">
           <span className="pd-next-label">Siguiente proyecto</span>
@@ -367,6 +341,7 @@ function PortfolioItem({ slug }) {
         <span className="pd-next-arrow">→</span>
       </Link>
 
+      {/* Lightbox */}
       {active !== null && (
         <div className="lightbox" onClick={close}>
           <button className="lightbox-close" onClick={close}>

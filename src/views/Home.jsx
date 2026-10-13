@@ -259,7 +259,12 @@ export default function Home() {
 
             <div className="hero-heading" data-appear>
               <div className="hero-heading-left">
-                <p className="hero-greeting">Hola 👋</p>
+                <p className="hero-greeting">
+                  Hola{" "}
+                  <span className="hero-wave" aria-hidden="true">
+                    👋
+                  </span>
+                </p>
 
                 <div className="hero-bottom">
                   <div className="hero-divider"></div>

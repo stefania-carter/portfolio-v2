@@ -606,7 +606,39 @@ html.dark .nav-name::after {
 .hero-status:hover {
   background: var(--overlay-light);
 }
+/* Manito que saluda */
+.hero-wave {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: waveHand 2.5s ease-in-out infinite;
+}
 
+@keyframes waveHand {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
 .status-dot {
   width: 10px;
   height: 10px;
@@ -2366,7 +2398,18 @@ html.dark .gallery-item:focus-visible {
 .lightbox-next:hover {
   transform: translateY(-50%) translateX(4px);
 }
+/* Permitir touch y evitar conflictos con el swipe */
+.lightbox {
+  touch-action: pan-y pinch-zoom;
+  overscroll-behavior: contain;
+}
 
+/* Evitar que las imágenes se puedan "arrastrar" */
+.lightbox-content img {
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
 /* ============================================================
    PÁGINA PORTFOLIO — DETALLE
    ============================================================ */
@@ -4072,126 +4115,14 @@ html.dark .contact-email:hover .contact-email-text {
     transform: none;
   }
 }
-/* ============================================================
-   DOCK FLOTANTE
-   ============================================================ */
-.dock-wrapper {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 90;
-  display: flex;
-  align-items: flex-end;
-  gap: 24px;
-  padding: 14px 24px;
-  background: var(--color-line-soft);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--color-line-soft);
-  border-radius: 24px;
-  box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.08),
-    0 0 0 1px var(--color-line-soft);
-  transition:
-    opacity 0.4s ease,
-    transform 0.4s ease,
-    padding 0.3s ease;
-}
-
-.dock-wrapper.dock-hidden {
-  opacity: 0;
-  transform: translateX(-50%) translateY(120%);
-  pointer-events: none;
-}
-
-.dock-item {
-  position: relative;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text);
-  cursor: pointer;
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-  will-change: transform;
-}
-
-.dock-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  background: var(--overlay-light);
-  border-radius: 12px;
-  transition:
-    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-    background 0.2s ease;
-  transform-origin: bottom center;
-}
-
 .dock-item:hover .dock-icon {
   background: var(--overlay-medium);
-}
-
-.dock-icon svg {
-  display: block;
-  width: 24px;
-  height: 24px;
-  transition:
-    width 0.2s ease,
-    height 0.2s ease;
 }
 
 .dock-item:hover .dock-icon svg {
   width: 30px;
   height: 30px;
 }
-
-.dock-tooltip {
-  position: absolute;
-  bottom: calc(100% + 12px);
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 6px 12px;
-  background: var(--color-text);
-  color: var(--color-bg);
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  border-radius: 999px;
-  white-space: nowrap;
-  pointer-events: none;
-  animation: dockTooltipIn 0.2s ease;
-  z-index: 10;
-}
-
-.dock-tooltip::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border: 5px solid transparent;
-  border-top-color: var(--color-text);
-}
-
-@keyframes dockTooltipIn {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-}
-
 /* ============================================================
    AWARD LINK
    ============================================================ */
@@ -4644,42 +4575,185 @@ html.dark .award-link:hover {
     padding: 12px 20px;
     font-size: 16px;
   }
+}
+/* ============================================================
+   DOCK FLOTANTE
+   ============================================================ */
+.dock-wrapper {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 90;
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  padding: 14px 24px;
+  background: var(--color-line-soft);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-line-soft);
+  border-radius: 24px;
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.08),
+    0 0 0 1px var(--color-line-soft);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease,
+    padding 0.3s ease;
+}
 
+.nav-right {
+  gap: 8px;
+}
+.nav-contact {
+  padding: 8px 14px;
+  font-size: 13px;
+}
+
+.exp-static-row {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.dock-wrapper.dock-hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(120%);
+  pointer-events: none;
+}
+
+.dock-item {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+}
+
+.dock-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--overlay-light);
+  border-radius: 12px;
+  transition:
+    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.2s ease;
+  transform-origin: bottom center;
+}
+
+.dock-icon svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+  transition:
+    width 0.2s ease,
+    height 0.2s ease;
+}
+
+/* Hover solo en dispositivos con mouse */
+@media (hover: hover) and (pointer: fine) {
+  .dock-item:hover .dock-icon {
+    background: var(--overlay-medium);
+  }
+
+  .dock-item:hover .dock-icon svg {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Feedback táctil para mobile */
+.dock-item:active .dock-icon {
+  background: var(--overlay-medium);
+  transform: scale(0.95);
+}
+
+.dock-item:active .dock-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+/* Tooltip */
+.dock-tooltip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 12px;
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  border-radius: 999px;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: dockTooltipIn 0.2s ease;
+  z-index: 10;
+}
+
+.dock-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-top-color: var(--color-text);
+}
+
+/* ============================================================
+   DOCK FLOTANTE — Versión mobile más compacta
+   ============================================================ */
+@media (max-width: 768px) {
   .dock-wrapper {
     bottom: 16px;
     padding: 10px 16px;
     gap: 16px;
     border-radius: 18px;
   }
+
   .dock-item,
   .dock-icon {
     width: 42px;
     height: 42px;
   }
+
   .dock-icon svg {
     width: 20px;
     height: 20px;
   }
-  .dock-item:hover .dock-icon svg {
+
+  .dock-item:hover .dock-icon svg,
+  .dock-item:active .dock-icon svg {
     width: 22px;
     height: 22px;
   }
+
   .dock-tooltip {
     display: none;
   }
+}
 
-  .nav-right {
-    gap: 8px;
+@keyframes dockTooltipIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(4px);
   }
-  .nav-contact {
-    padding: 8px 14px;
-    font-size: 13px;
-  }
-
-  .exp-static-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
   }
 }
 /* ============================================================

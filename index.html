@@ -2,18 +2,41 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+
+    <!-- Favicon SVG (navegadores modernos) -->
     <link
       rel="icon"
       type="image/svg+xml"
       href="/assets/brand/scd-favicon.svg"
     />
+
+    <!-- Favicon ICO (fallback para navegadores viejos) -->
+    <link rel="icon" href="/assets/brand/favicon.ico" sizes="any" />
+
+    <!-- Icono para iPhone/iPad (pantalla de inicio) -->
+    <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
+
+    <!-- Manifest para Android (pantalla de inicio) -->
+    <link rel="manifest" href="/site.webmanifest" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Título y descripción -->
     <title>Stefania Carter Drolett | Visual Design</title>
     <meta
       name="description"
-      content="Product designer con +10 años de experiencia."
+      content="Diseñadora gráfica y motion designer con más de 15 años de experiencia. Portafolio de proyectos audiovisuales, diseño editorial, identidad visual y arte abstracto."
     />
 
+    <!-- Color de la barra del navegador en mobile -->
+    <meta name="theme-color" content="#ffffff" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#050517"
+    />
+
+    <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,10 +48,8 @@
       (function () {
         try {
           var saved = localStorage.getItem("theme");
-          var prefersDark = window.matchMedia(
-            "(prefers-color-scheme: dark)",
-          ).matches;
-          if (saved === "dark" || (!saved && prefersDark)) {
+          // Solo activar dark si el usuario lo eligió MANUALMENTE
+          if (saved === "dark") {
             document.documentElement.classList.add("dark");
           }
         } catch (e) {}

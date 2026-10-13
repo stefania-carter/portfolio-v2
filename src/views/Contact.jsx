@@ -46,7 +46,12 @@ export default function Contact() {
     return () => clearInterval(intervalo);
   }, []);
 
-  const email = "scarterdrolett@gmail.com";
+  // Email visible para el usuario (en el aside, mailto, etc.)
+  const emailPublic = "scarterdrolett@gmail.com";
+
+  // Hash de FormSubmit que oculta el email real del código fuente
+  const emailHash = "1db57a9aa019c0615997c0e2fb7c9f37";
+
   const selected = getService(servicio);
 
   const handleChange = (e) => {
@@ -72,7 +77,7 @@ export default function Contact() {
     setStatus("sending");
 
     try {
-      const res = await fetch(`https://formsubmit.co/ajax/${email}`, {
+      const res = await fetch(`https://formsubmit.co/ajax/${emailHash}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -110,12 +115,12 @@ export default function Contact() {
 
   const copyEmail = async () => {
     try {
-      await navigator.clipboard.writeText(email);
+      await navigator.clipboard.writeText(emailPublic);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
       const textarea = document.createElement("textarea");
-      textarea.value = email;
+      textarea.value = emailPublic;
       document.body.appendChild(textarea);
       textarea.select();
       document.execCommand("copy");
@@ -277,7 +282,7 @@ export default function Contact() {
                 aria-live="assertive"
               >
                 Algo falló. Escríbeme directo a{" "}
-                <a href={`mailto:${email}`}>{email}</a>.
+                <a href={`mailto:${emailPublic}`}>{emailPublic}</a>.
               </p>
             )}
           </form>
@@ -293,7 +298,7 @@ export default function Contact() {
               onClick={copyEmail}
               aria-label="Copiar email al portapapeles"
             >
-              <span className="contact-email-text">{email}</span>
+              <span className="contact-email-text">{emailPublic}</span>
               <span className="contact-email-action">
                 {copied ? "✓ Copiado" : "Copiar"}
               </span>

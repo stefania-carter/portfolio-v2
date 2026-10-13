@@ -37,7 +37,7 @@ export default function About() {
       media: "El Mercurio de Valparaíso",
       date: "Ver publicación",
       excerpt:
-        "Reconocidos expositores del área de las artes, publicidad y comunicaciones asistieron a este evento. El cierre de estas conferencias estuvo marcado por los diseñadores. El mexicano Alejandro Magallanes expuso sobre sus escritos en la disciplina; los argentinos Gianina Manuele y Gustavo Mancini dieron a conocer su trabajo en lettering como una herramienta de innovación; y finalmente la chilena Stefanía Carter, miembro del Departamento de Gráfica de Prensa en TVN.",
+        "Reconocidos expositores del área de las artes, publicidad y comunicaciones asistieron a este evento. El cierre de estas conferencias estuvo marcado por los diseñadores. El mexicano Alejandro Magallanes expuso sobre sus escritos en la disciplina; los argentinos Gianina Manuele y Gustavo Mancini dieron a conocer su trabajo en lettering como una herramienta de innovación; y finalmente la chilena Stefania Carter, miembro del Departamento de Gráfica de Prensa en TVN.",
       image: "/assets/press/Press-01.webp",
     },
   ];
@@ -62,15 +62,14 @@ export default function About() {
       <section className="about-bio-layout" data-appear>
         <div className="about-bio-text">
           <p>
-            Stefania Carter Drolett es diseñadora gráfica y especialista en
-            motion graphics, con más de 15 años de experiencia en diseño,
-            comunicación audiovisual, animación y medios digitales. Su trabajo
-            se sitúa en la intersección entre el diseño visual, la narrativa y
-            el movimiento. A lo largo de su trayectoria ha desarrollado
-            proyectos para televisión, educación, comunicación institucional y
-            contenidos digitales, combinando pensamiento conceptual, lenguaje
-            gráfico y una especial atención a la claridad y el ritmo de las
-            imágenes.
+            Diseñadora gráfica y especialista en motion graphics, con más de 15
+            años de experiencia en diseño, comunicación audiovisual, animación y
+            medios digitales. Su trabajo se sitúa en la intersección entre el
+            diseño visual, la narrativa y el movimiento. A lo largo de su
+            trayectoria ha desarrollado proyectos para televisión, educación,
+            comunicación institucional y contenidos digitales, combinando
+            pensamiento conceptual, lenguaje gráfico y una especial atención a
+            la claridad y el ritmo de las imágenes.
           </p>
           <p>
             Inició su carrera profesional en 2014 y desde entonces ha trabajado

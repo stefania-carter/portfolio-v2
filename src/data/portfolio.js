@@ -179,7 +179,7 @@ const portfolio = [
     featured: false,
     video: {
       url: "https://www.youtube.com/watch?v=jKt3AobRvLU",
-      title: "Video 1",
+      title: "Campaña RRSS",
     },
     intro: [
       "Campaña digital para la Admisión 2020 de la Universidad Viña del Mar, bajo la frase Conectamos tu pasión al éxito.",
@@ -200,22 +200,22 @@ const portfolio = [
       {
         type: "video",
         url: "https://www.youtube.com/watch?v=Fp-2d8FMoUw",
-        title: "Video 2",
+        title: "Vía Pública y Metro",
       },
       {
         type: "video",
         url: "https://www.youtube.com/watch?v=krRg2I9DFDE",
-        title: "Video 3",
+        title: "Vía Pública y Metro",
       },
       {
         type: "video",
         url: "https://www.youtube.com/watch?v=n7liRAgFdB4",
-        title: "Video 4",
+        title: "Auspicio becas y beneficios",
       },
       {
         type: "video",
         url: "https://www.youtube.com/watch?v=GeNiuGm7yok",
-        title: "Video 5",
+        title: "huincha tv",
       },
       { type: "image", src: campanaUvm(1) },
       { type: "image", src: campanaUvm(2) },
@@ -267,7 +267,7 @@ const portfolio = [
       {
         type: "video",
         url: "https://www.youtube.com/watch?v=LTUDWe_-jhw",
-        title: 'Poster para película "La Nana"',
+        title: 'Posters internacionales película "La Nana"',
       },
       { type: "grid", columns: 2, images: [oficio(4), oficio(5)] },
       {
@@ -295,7 +295,7 @@ const portfolio = [
     preview: "/assets/portfolio/5-exploradores/preview.mp4",
     year: "2018",
     description:
-      "Identidad visual y gráfica animada para el programa científico Exploradores de TVN.",
+      "Identidad visual y gráfica animada para el programa científico Exploradores: Del Átomo al Cosmos de TVN.",
     featured: false,
     video: {
       url: "https://www.youtube.com/watch?v=1X_9phiUEzc",
@@ -383,11 +383,11 @@ const portfolio = [
     preview: "/assets/portfolio/7-the-best/preview.mp4",
     year: "2021",
     description:
-      "Videowall para los finalistas del premio The Best FIFA Football Awards, desarrollado para el noticiero 24 Horas, Deporte de TVN.",
+      "Videowall para los finalistas del premio The Best FIFA Football Awards, desarrollado para la sección Deportes del noticiero 24 Horas, TVN.",
     featured: false,
     video: {
       url: "https://www.youtube.com/watch?v=XVnlBtTpRV0",
-      title: "Videowall | Finalistas Premio The Best",
+      title: "Gráfica animada en videowall",
     },
     intro: [
       "Videowall, Finalistas Premio The Best, desarrollado por Stefania Carter Drolett para el noticiero 24 Horas, Deportes de Televisión Nacional de Chile, es una pieza de motion graphics diseñada para presentar a los nominados al premio The Best FIFA Football Awards.",
@@ -424,7 +424,7 @@ const portfolio = [
       "Propuesta de diseño gráfico para el noticiero 24 Horas de Televisión Nacional de Chile, desarrollado por Stefania Carter Drolett.",
       "La pieza se centra en la creación de una imagen estática para el videowall del estudio de televisión, utilizando técnicas de ilustración digital y composición visual.",
       "La gráfica está inspirada en la noticia sobre el misterio de la aviadora Amelia Earhart, desaparecida en 1937, y busca transmitir la atmósfera de intriga y exploración asociada a este tema.",
-      "La propuesta destaca por su estética moderna y su capacidad para complementar la narrativa del noticiero, aportando un valor visual significativo al espacio televisivo.",
+      "La propuesta destaca por su capacidad para complementar la narrativa del noticiero, aportando un valor visual significativo al espacio televisivo.",
     ],
     info: {
       client: "TVN · 24 Horas",
@@ -448,11 +448,11 @@ const portfolio = [
     preview: "/assets/portfolio/9-lo-curro/preview.mp4",
     year: "2021",
     description:
-      "Gráfica para el reportaje de TVN que revisita, dos décadas después, el homicidio ocurrido en Lo Curro, Santiago.",
+      "Gráfica animada para el reportaje de TVN que revisita, dos décadas después, el homicidio ocurrido en Lo Curro, Santiago - Chile.",
     featured: false,
     video: {
       url: "https://www.youtube.com/watch?v=s4I01NbX94w",
-      title: "Portada de prensa",
+      title: "Portadas de prensa escrita de la época",
     },
     intro: [
       "El proyecto Portadas Crimen Lo Curro, desarrollado por Stefania Carter Drolett para Reportajes 24 de Televisión Nacional de Chile (TVN), la gráfica fue diseñada para acompañar un reportaje que, dos décadas después, revisita el homicidio de un menor de 9 años ocurrido en el sector de Lo Curro, Santiago.",
@@ -520,7 +520,6 @@ const portfolio = [
     featured: false,
     intro: [
       "El proyecto Lynx Design, desarrollado por la diseñadora Stefania Carter Drolett, es una propuesta de identidad visual para el innovador estudio de diseño de iluminación y muebles Lynx Design, creado por el talentoso diseñador chileno-estadounidense Claudio González. Con base en Francia, Lynx Design se ha destacado por su enfoque en la creación de piezas únicas que fusionan lo moderno con lo artesanal, lo funcional con lo estético.",
-      "La propuesta gráfica abarca desde el diseño de un logotipo elegante y sofisticado hasta una paleta cromática cuidadosamente seleccionada, que evoca la exclusividad y calidad premium de la marca. La tipografía y los elementos visuales fueron pensados para destacar tanto la modernidad como la herencia cultural de las piezas, sin perder de vista el enfoque minimalista que caracteriza al estudio.",
       "El proyecto no solo busca crear una identidad visual que represente su alta calidad en diseño de iluminación y mobiliario, sino también transmitir el carácter artesanal de cada pieza, elaborada en colaboración con artesanos de renombre de lugares como Francia, Italia, Suiza y Nueva York. Las colecciones de Lynx Design han sido exhibidas en prestigiosas boutiques de ciudades como Londres, París, Suiza y Nueva York, lo que refuerza aún más la importancia de una identidad gráfica sólida y de alta gama.",
       "Este rediseño busca destacar la esencia de Lynx Design en un mercado global, conectando con una audiencia exigente que valora tanto la innovación como el arte de la manufactura. La propuesta de Stefania Carter Drolett captura la atmósfera de lujo, elegancia y sofisticación que define al estudio de Claudio González.",
     ],
@@ -547,7 +546,7 @@ const portfolio = [
   {
     id: 12,
     slug: "serigrafia-max",
-    title: "Serigrafía Proyecto Max",
+    title: "Serigrafía Proyecto MAX",
     cover: max(6),
     category: "Serigrafía",
     preview: "/assets/portfolio/12-serigrafia-max/preview.mp4",

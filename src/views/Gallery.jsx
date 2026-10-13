@@ -1,9 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useAppear } from "../hooks/useAppear";
 
 export default function Gallery() {
   useAppear();
   const [lightboxIndex, setLightboxIndex] = useState(null);
+
+  // Refs para el swipe en mobile
+  const touchStartXRef = useRef(0);
+  const touchEndXRef = useRef(0);
+  const wasSwipeRef = useRef(false);
 
   // 👇 Añade aquí tus obras reales.
   //    Guarda las imágenes en: public/assets/gallery/
@@ -194,6 +199,38 @@ export default function Gallery() {
     setLightboxIndex((i) => (i - 1 + artworks.length) % artworks.length);
   const next = () => setLightboxIndex((i) => (i + 1) % artworks.length);
 
+  // Swipe handlers para mobile
+  const handleTouchStart = (e) => {
+    touchStartXRef.current = e.changedTouches[0].screenX;
+    wasSwipeRef.current = false;
+  };
+
+  const handleTouchEnd = (e) => {
+    touchEndXRef.current = e.changedTouches[0].screenX;
+    const deltaX = touchEndXRef.current - touchStartXRef.current;
+    const SWIPE_THRESHOLD = 50;
+
+    if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
+      wasSwipeRef.current = true;
+      if (deltaX > 0) {
+        // Swipe hacia la derecha → anterior
+        prev();
+      } else {
+        // Swipe hacia la izquierda → siguiente
+        next();
+      }
+    }
+  };
+
+  const handleLightboxClick = () => {
+    // Si fue swipe, no cerrar el lightbox
+    if (wasSwipeRef.current) {
+      wasSwipeRef.current = false;
+      return;
+    }
+    closeLightbox();
+  };
+
   // Teclado: Escape, ←, →
   useEffect(() => {
     if (lightboxIndex === null) return;
@@ -221,18 +258,16 @@ export default function Gallery() {
         <h1 className="gallery-title">Sala Abierta</h1>
         <p className="gallery-subtitle">Color, textura y gesto.</p>
         <p className="gallery-subtitle">
-          La galería de arte abstracto destaca por una exploración profunda de
-          la emoción, el color y la textura. A través de composiciones libres y
-          gestuales, S. C. Drolett logra transmitir una fuerza expresiva que
-          conecta lo visual con lo intuitivo. Su trabajo se caracteriza por una
-          paleta audaz, contrastes marcados y una notable sensibilidad en el uso
-          del espacio.
+          Esta es mi galería personal. El espacio donde exploro mi lado más
+          íntimo como artista. Aquí reúno pinturas abstractas que nacen de una
+          búsqueda libre del color, la textura y el gesto, sin más reglas que la
+          intuición.
         </p>
         <p className="gallery-subtitle">
-          Cada obra invita a una interpretación personal, abriendo múltiples
-          lecturas desde lo sensible y lo simbólico. Sin duda, una propuesta
-          contemporánea que consolida a la artista como una voz única dentro del
-          arte abstracto digital y pictórico.
+          Cada obra busca transmitir una fuerza expresiva que conecta lo visual
+          con lo sensible, y se abre a múltiples lecturas según quién la mira.
+          Es un proyecto que desarrollo en paralelo a mi trabajo profesional, y
+          que forma parte esencial de mi identidad como creadora.
         </p>
         <p className="gallery-cue">
           Haz clic en cualquier obra para verla en grande.
@@ -268,7 +303,9 @@ export default function Gallery() {
       {current && (
         <div
           className="lightbox"
-          onClick={closeLightbox}
+          onClick={handleLightboxClick}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
           role="dialog"
           aria-modal="true"
         >
