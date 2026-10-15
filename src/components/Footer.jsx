@@ -8,7 +8,7 @@ export default function Footer() {
           <div className="footer-social">
             {/* LINKEDIN */}
             <a
-              href="https://www.linkedin.com/in/stefania-carter-drolett-739ab763/"
+              href="https://www.linkedin.com/in/stefaniacarter/"
               className="social-icon"
               target="_blank"
               rel="noopener noreferrer"

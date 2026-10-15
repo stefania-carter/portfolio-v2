@@ -76,7 +76,7 @@ export default function Navbar() {
           <div className="nav-center">
             {/* LINKEDIN */}
             <a
-              href="https://www.linkedin.com/in/stefania-carter-drolett-739ab763/"
+              href="https://www.linkedin.com/in/stefaniacarter/"
               className="nav-social"
               target="_blank"
               rel="noopener noreferrer"
@@ -195,7 +195,7 @@ export default function Navbar() {
 
           <div className="menu-social">
             <a
-              href="https://www.linkedin.com/in/stefania-carter-drolett-739ab763/"
+              href="https://www.linkedin.com/in/stefaniacarter/"
               target="_blank"
               rel="noopener noreferrer"
             >

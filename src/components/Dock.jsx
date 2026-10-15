@@ -71,7 +71,7 @@ export default function Dock() {
     {
       id: "linkedin",
       label: "LinkedIn",
-      href: "https://www.linkedin.com/in/stefania-carter-drolett-739ab763/",
+      href: "https://www.linkedin.com/in/stefaniacarter/",
       isInternal: false,
       icon: (
         <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
