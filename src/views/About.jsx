@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useAppear } from "../hooks/useAppear";
 
@@ -7,12 +7,29 @@ export default function About() {
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
+  // 👇 COMPONENTES PARA EL VIDEO
+  const videoRef = useRef(null);
+
+  const handleVideoEnter = () => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  };
+
+  const handleVideoLeave = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
+
   const workExperience = [
     {
       role: "Postproducción y Motion Graphics",
       company: "Universidad Viña del Mar UVM",
       year: "2019 - Hoy",
       website: "https://www.uvm.cl",
+      logo: "/assets/logos/uvm.webp",
       desc: "Encargada del diseño, desarrollo y asesoría de piezas gráficas y contenido audiovisual para campañas de comunicación interna y externa, alineadas a los objetivos de marketing y posicionamiento de marca. Mi labor se enfoca en potenciar el impacto comunicacional, garantizar la calidad visual y la coherencia institucional, así como la correcta aplicación de la identidad de marca de la Universidad Viña del Mar, contribuyendo al fortalecimiento de su imagen y engagement con sus audiencias.",
     },
     {
@@ -20,6 +37,7 @@ export default function About() {
       company: "TVN (Televisión Nacional de Chile)",
       website: "https://www.24horas.cl",
       year: "2014 - 2018",
+      logo: "/assets/logos/tvn.webp",
       desc: "Diseño y desarrollo de piezas gráficas y Motion Graphics para diversos programas de prensa de Televisión Nacional de Chile, destacándose especialmente el programa 24 Horas, que es el de mayor audiencia. También otras plataformas informativas, como Canal 24 Horas, dedicado a la cobertura de noticias en tiempo real las 24 horas del día, así como 24horas.cl, plataforma online del Departamento de Prensa.",
     },
     {
@@ -27,6 +45,7 @@ export default function About() {
       company: "Lynx Design",
       year: "2013 - Hoy",
       website: "https://www.instagram.com/lynxdesignfr/",
+      logo: "/assets/logos/lynx.webp",
       desc: "Diseñadora de piezas gráficas editoriales para exposiciones en galerías de arte en Francia, Suiza, Londres y Nueva York, donde desarrollo materiales visuales que capturan la esencia de cada exhibición. El trabajo se centra en crear diseños que no solo complementan las obras expuestas, sino que también enriquecen la experiencia del visitante, asegurando que cada pieza gráfica refleje la temática y el estilo del evento artístico.",
     },
   ];
@@ -62,58 +81,66 @@ export default function About() {
       <section className="about-bio-layout" data-appear>
         <div className="about-bio-text">
           <p>
-            Diseñadora gráfica y especialista en motion graphics, con más de 15
-            años de experiencia en diseño, comunicación audiovisual, animación y
-            medios digitales. Su trabajo se sitúa en la intersección entre el
-            diseño visual, la narrativa y el movimiento. A lo largo de su
-            trayectoria ha desarrollado proyectos para televisión, educación,
-            comunicación institucional y contenidos digitales, combinando
-            pensamiento conceptual, lenguaje gráfico y una especial atención a
-            la claridad y el ritmo de las imágenes.
+            Diseñadora gráfica y{" "}
+            <strong>especialista en motion graphics</strong>, con más de{" "}
+            <strong>
+              15 años de experiencia en diseño, comunicación audiovisual,
+              animación y medios digitales.
+            </strong>{" "}
+            Su trabajo se sitúa en la intersección entre el diseño visual, la
+            narrativa y el movimiento. A lo largo de su trayectoria ha
+            desarrollado proyectos para televisión, educación, comunicación
+            institucional y contenidos digitales, combinando pensamiento
+            conceptual, lenguaje gráfico y una especial atención a la claridad y
+            el ritmo de las imágenes.
           </p>
           <p>
-            Inició su carrera profesional en 2014 y desde entonces ha trabajado
-            en distintos contextos creativos, construyendo una mirada versátil
-            que combina diseño gráfico y producción audiovisual. Durante más de
-            cuatro años formó parte del departamento de prensa de Televisión
-            Nacional de Chile (TVN), donde desarrolló piezas gráficas y motion
-            graphics para contenidos informativos y de actualidad, trabajando en
-            un entorno de producción rápida y con exigencias de entrega para
-            televisión.
+            Inició su carrera profesional en <strong>2014</strong> y desde
+            entonces ha trabajado en distintos contextos creativos, construyendo
+            una mirada versátil que combina diseño gráfico y producción
+            audiovisual. Durante más de cuatro años formó parte del departamento
+            de prensa de <strong>Televisión Nacional de Chile (TVN)</strong>,
+            donde desarrolló piezas gráficas y motion graphics para contenidos
+            informativos y de actualidad, trabajando en un entorno de producción
+            rápida y con exigencias de entrega para televisión.
           </p>
           <p>
             También ha desarrollado proyectos para el ámbito educacional e
-            institucional, incluyendo su trabajo en la Universidad Viña del Mar
-            - Chile, donde participa en proyectos de motion graphics,
-            postproducción audiovisual, comunicación digital y contenidos
-            institucionales. Su experiencia abarca desde sistemas gráficos
-            animados y piezas audiovisuales hasta tutoriales, campañas y
-            contenidos destinados a comunicar información de manera clara y
-            atractiva.
+            institucional, incluyendo su trabajo en la{" "}
+            <strong>Universidad Viña del Mar - Chile</strong>, donde participa
+            en proyectos de motion graphics, postproducción audiovisual,
+            comunicación digital y contenidos institucionales. Su experiencia
+            abarca desde sistemas gráficos animados y piezas audiovisuales hasta
+            tutoriales, campañas y contenidos destinados a comunicar información
+            de manera clara y atractiva.
           </p>
           <p>
             En paralelo a su trayectoria en diseño y audiovisual, Carter ha
             ampliado sus competencias hacia el desarrollo digital. Completó su
-            formación en Full Stack JavaScript, incorporando conocimientos de
-            HTML, CSS, JavaScript, React, SQL y desarrollo backend. Esta
-            formación le permite abordar el diseño desde una perspectiva más
-            amplia, entendiendo también la tecnología y el desarrollo como parte
-            de la experiencia visual y digital.
+            formación en <strong>Full Stack JavaScript</strong>, incorporando
+            conocimientos de HTML, CSS, JavaScript, React, SQL y desarrollo
+            backend. Esta formación le permite abordar el diseño desde una
+            perspectiva más amplia, entendiendo también la tecnología y el
+            desarrollo como parte de la experiencia visual y digital.
           </p>
           <p>
-            Su práctica creativa también se extiende al arte abstracto, donde
-            desarrolla una búsqueda más personal y experimental a través de la
-            pintura. En sus obras explora el color, las formas, las texturas y
-            el gesto como elementos capaces de comunicar sensaciones e ideas más
-            allá de una representación figurativa. Esta dimensión artística
-            constituye un espacio de exploración independiente de su trabajo
-            profesional y forma parte de su identidad como creadora.
+            Su práctica creativa también se extiende al{" "}
+            <strong>arte abstracto</strong>, donde desarrolla una búsqueda más
+            personal y experimental a través de la pintura. En sus obras explora
+            el color, las formas, las texturas y el gesto como elementos capaces
+            de comunicar sensaciones e ideas más allá de una representación
+            figurativa. Esta dimensión artística constituye un espacio de
+            exploración independiente de su trabajo profesional y forma parte de
+            su identidad como creadora.
           </p>
           <p>
             Sus intereses abarcan el diseño, la tecnología, la educación, la
-            historia, la creatividad, el medioambiente y el arte. Existe un
-            especial interés por transformar información e ideas complejas en
-            experiencias visuales simples, atractivas y fáciles de comprender,
+            historia, la creatividad, el medioambiente y el arte.{" "}
+            <strong>
+              Existe un especial interés por transformar información e ideas
+              complejas en experiencias visuales simples, atractivas y fáciles
+              de comprender,
+            </strong>{" "}
             explorando las posibilidades del motion graphics, la narrativa
             digital y las nuevas tecnologías aplicadas a la creatividad. Desde
             Viña del Mar, desarrolla su práctica entre el diseño gráfico, el
@@ -125,7 +152,26 @@ export default function About() {
         </div>
 
         <aside className="about-bio-photo">
-          <img src="/assets/profile/profile-about.webp" alt="Stefania Carter" />
+          <div
+            className="about-photo-container"
+            onMouseEnter={handleVideoEnter}
+            onMouseLeave={handleVideoLeave}
+          >
+            <img
+              src="/assets/profile/profile-about.webp"
+              alt="Stefania Carter"
+              className="about-photo-img"
+            />
+            <video
+              ref={videoRef}
+              src="/assets/profile/profile-about-video.mp4"
+              className="about-photo-video"
+              muted
+              loop
+              playsInline
+              preload="none"
+            />
+          </div>
         </aside>
       </section>
 
@@ -140,8 +186,18 @@ export default function About() {
             <details className="exp-item" key={`${item.company}-${i}`}>
               <summary>
                 <div className="exp-head">
-                  <p className="exp-role">{item.role}</p>
-                  <p className="exp-company">{item.company}</p>
+                  {item.logo && (
+                    <img
+                      src={item.logo}
+                      alt={`Logo ${item.company}`}
+                      className="exp-logo"
+                      loading="lazy"
+                    />
+                  )}
+                  <div className="exp-head-text">
+                    <p className="exp-role">{item.role}</p>
+                    <p className="exp-company">{item.company}</p>
+                  </div>
                 </div>
                 <span className="exp-plus">+</span>
                 <span className="exp-year">{item.year}</span>

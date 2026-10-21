@@ -1787,6 +1787,9 @@ html.dark .social-icon:hover {
   color: var(--color-text-soft);
   max-width: 720px;
 }
+/* ============================================================
+   ABOUT — Foto/Video con hover
+   ============================================================ */
 .about-bio-photo {
   position: sticky;
   top: 120px;
@@ -1794,12 +1797,43 @@ html.dark .social-icon:hover {
   flex-direction: column;
   gap: 12px;
 }
-.about-bio-photo img {
+
+.about-photo-container {
+  position: relative;
   width: 100%;
   aspect-ratio: 4 / 5;
-  object-fit: cover;
   border-radius: var(--radius-md);
+  overflow: hidden;
   background: var(--placeholder-bg);
+  cursor: pointer;
+}
+
+.about-photo-img,
+.about-photo-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.4s ease;
+}
+
+.about-photo-img {
+  opacity: 1;
+  z-index: 2;
+}
+
+.about-photo-video {
+  opacity: 0;
+  z-index: 1;
+}
+
+.about-photo-container:hover .about-photo-img {
+  opacity: 0;
+}
+
+.about-photo-container:hover .about-photo-video {
+  opacity: 1;
 }
 
 .about-section {
@@ -4809,6 +4843,35 @@ html.dark .exp-item:hover {
 
 .exp-item:hover .exp-static-row .exp-year {
   color: var(--color-text);
+}
+/* ============================================================
+   EXPERIENCIA — Encabezado con logo
+   ============================================================ */
+.exp-head {
+  display: flex;
+  align-items: start; /* Centra verticalmente el logo con las dos líneas de texto */
+  gap: 16px;
+}
+
+.exp-head-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  min-width: 0;
+}
+
+.exp-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 6px;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+.exp-item[open] .exp-logo {
+  opacity: 1;
 }
 /* ============================================================
    AVATAR SMILE — Interacción hover + click
