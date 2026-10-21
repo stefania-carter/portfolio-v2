@@ -1896,6 +1896,16 @@ html.dark .exp-more-info-link {
 html.dark .exp-more-info-link:hover {
   color: var(--color-yellow-hover);
 }
+/* En mobile: solo foto estática, sin video */
+@media (max-width: 768px) {
+  .about-photo-video {
+    display: none;
+  }
+
+  .about-photo-container {
+    aspect-ratio: 4 / 5;
+  }
+}
 
 /* ============================================================
    PÁGINA PORTFOLIO (grid)
